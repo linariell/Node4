@@ -25,19 +25,6 @@
 <h2>Решение задач</h2>
 <p>Файл, запускающий сервер на node.js: </p>
 <code>
-const express=require("express");
-const app=express();
-
-app.use(express.static(__dirname + "\\"));
-app.use("/",function(request,response) {
-    response.sendFile("index.html")
-});
-app.listen(3005);
-console.log('Сервер работает');
-</code>
-
-<p>Были выполнены задачи: </p>
-<code>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +34,7 @@ console.log('Сервер работает');
 </head>
 <body>
     <script>
-
+alert("Лабораторная 4");
 //1
 {
     let x = parseInt(prompt("Введите x"));
@@ -416,5 +403,143 @@ alert(str);
 </html>
 </code>
 <p>Также были выполнены задачи на codewars.</p>
+<code>
+  function head(array) {
+  return array[0];
+}
+
+function last(array) {
+  return array[array.length - 1];
+}
+
+function init(array) {
+  return array.slice(0, array.length - 1);
+}
+
+function tail(array) {
+  return array.slice(1, array.length);
+}
+
+function deepCount(a){
+  let length = 0;
+  for(let i = 0; i < a.length; i++){
+    if (typeof a[i] == 'object')
+      length += deepCount(a[i]);
+    length ++;
+  }
+  return length;
+}
+
+function numberOfPairs(array)
+{
+  let gloves = array.slice(0);
+  let pair = 0;
+  let i = 0;
+  while(i != gloves.length){
+    let flag = true;
+    
+    for(let j = i + 1; j < gloves.length; j++){
+      if(gloves[i] == gloves[j]){
+        pair++;
+        gloves.splice(i, 1);
+        gloves.splice(j - 1, 1);
+        flag = false;
+        break;
+      }
+    }
+    
+    if (flag) i++;
+  }
+  return pair;
+}
+
+function sortByBit(arr) {
+  
+  for(let i = 0; i < arr.length; i++){
+    for(let j = i + 1; j < arr.length; j++){
+      one_i = countOne(arr[i].toString(2));
+      one_j = countOne(arr[j].toString(2));
+      
+      if(one_i > one_j)
+      {
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      } else if(one_i == one_j)
+      {
+        if (arr[i] > arr[j]){
+            let temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+      }
+    }
+  }
+}
+  
+function countOne(str){
+  let count = 0;
+  for(let i = 0; i < str.length; i++)
+    if (str[i] == '1') count++;
+  
+  return count;
+}
+function recycle(array) {
+  let paper = [];
+  let glass = [];
+  let organic = [];
+  let plastic = [];
+  
+  for(let i = 0; i < array.length; i++){
+    if(Object.keys(array[i]).length == 3){
+      switch (array[i].secondMaterial){
+          case 'paper':
+            paper.push(array[i].type);
+            break;
+          case 'glass':
+            glass.push(array[i].type);
+            break;
+          case 'organic':
+            organic.push(array[i].type);
+            break;
+          case 'plastic':
+            plastic.push(array[i].type);
+            break;
+      }
+    } 
+    
+     switch (array[i].material){
+          case 'paper':
+            paper.push(array[i].type);
+            break;
+          case 'glass':
+            glass.push(array[i].type);
+            break;
+          case 'organic':
+            organic.push(array[i].type);
+            break;
+          case 'plastic':
+            plastic.push(array[i].type);
+            break;
+      }
+  }
+  return [paper, glass, organic, plastic]
+}
+function getLengthOfMissingArray(arrayOfArrays) {
+  if (arrayOfArrays === null || arrayOfArrays.length == 0) return 0;
+  
+  let array = [];
+  for(let i = 0; i < arrayOfArrays.length; i++){
+    if (arrayOfArrays[i] === null || arrayOfArrays[i].length == 0) return 0;
+    array.push(arrayOfArrays[i].length);
+  }
+  array = array.sort((a,b)=>a-b);
+  for(let i = 0; i < array.length-1; i++)
+  {
+    if (array[i + 1] != array[i] + 1)
+      return array[i] + 1;
+  }
+}
+</code>
 <h2>Вывод</h2>
 <p>В ходе лабораторной работы были решены задачи на Java Script, а также написан бот для телеграмма с помощью grammy API. Выполнение происходило с помощью Node.js</p>
